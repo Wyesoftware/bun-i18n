@@ -1,0 +1,46 @@
+name: package-release
+
+on:
+  push:
+    branches:
+      - dev
+  release:
+    types: [published]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: PROD
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build package
+        run: bun run build
+
+      - name: Update npm
+        run: sudo npm install -g npm@latest
+
+      - name: Set dev version and tag
+        if: github.ref_name == 'dev'
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          npm version "$(node -p "require('./package.json').version")-dev.${SHORT_SHA}" --no-git-tag-version
+          echo "NPM_TAG=dev" >> $GITHUB_ENV
+
+      - name: Set latest tag
+        if: github.event_name == 'release'
+        run: echo "NPM_TAG=latest" >> $GITHUB_ENV
+
+      - name: Publish
+        run: npm publish --tag $NPM_TAG --access public

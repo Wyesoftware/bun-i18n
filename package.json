@@ -1,0 +1,97 @@
+{
+  "name": "@wyesoftware/bun-i18n",
+  "version": "0.1.0",
+  "description": "A fully type-safe and lightweight internationalization library for all your Bun projects.",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./parser": {
+      "types": "./dist/parser/index.d.ts",
+      "import": "./dist/parser/index.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "import": "./dist/formatters/index.js"
+    },
+    "./detectors": {
+      "types": "./dist/detectors/index.d.ts",
+      "import": "./dist/detectors/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.ts",
+      "import": "./dist/config/index.js"
+    },
+    "./generator": {
+      "types": "./dist/generator/index.d.ts",
+      "import": "./dist/generator/index.js"
+    },
+    "./importer": {
+      "types": "./dist/importer/index.d.ts",
+      "import": "./dist/importer/index.js"
+    },
+    "./exporter": {
+      "types": "./dist/exporter/index.d.ts",
+      "import": "./dist/exporter/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "bun-i18n": "./dist/cli/index.js",
+    "typesafe-i18n": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "dev": "bun src/cli/index.ts",
+    "build": "rm -rf dist && bun build.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.2",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "i18n",
+    "bun",
+    "typescript",
+    "internationalization",
+    "typesafe",
+    "l10n",
+    "localization",
+    "react"
+  ],
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "repository": "https://github.com/Wyesoftware/bun-i18n.git",
+  "author": "Wyesoftware"
+}

@@ -1,0 +1,14 @@
+{
+  // Declaration-only emit for dist/. Works with both TypeScript 6 (JS compiler)
+  // and TypeScript 7 (native compiler), unlike dts bundlers that need the TS JS API.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test-d.ts"]
+}
